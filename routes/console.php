@@ -16,3 +16,6 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+Artisan::command('Haw:King_simple', function () {
+    $this->info('nice person!!!');
+})->describe('打印信息');

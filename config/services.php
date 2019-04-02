@@ -43,5 +43,10 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
+    'github' => [
+        'client_id' => env('GIT_CLIENT_ID'),
+        'client_secret' => env('GIT_CLIENT_SECRET'),
+        'redirect' => env('GIT_REDIRECT')
+    ]
 
 ];

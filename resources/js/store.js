@@ -22,7 +22,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 import {
     cafes
-} from './modules/cafes.js'
+} from './modules/cafes'
 /**
  * Export our data store.
  */

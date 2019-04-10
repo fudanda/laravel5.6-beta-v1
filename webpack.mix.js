@@ -12,4 +12,35 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    // .sass('resources/sass/app.scss', 'public/css')
+    .less('resources/less/app.less', 'public/css').webpackConfig({
+        // output: {
+        //     chunkFilename: 'js/[name].js'
+        // },
+        module: {
+            rules: [{
+                    test: /\.less?$/,
+                    use: [{
+                        loader: 'less-loader',
+                        options: {
+                            javascriptEnabled: true
+                        }
+                    }]
+                },
+                // {
+                //     test: /\.jsx?$/,
+                //     // exclude: /node_modules(?!\/ant-design-vue)/,
+                //     use: [{
+                //         loader: 'babel-loader',
+                //         options: {
+                //             presets: ['env']
+                //         }
+                //     }]
+                // },
+
+
+            ]
+        }
+    })
+    .extract(['vue'])
+    .version([]);

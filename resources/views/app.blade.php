@@ -12,7 +12,7 @@
     <title>Roast</title>
 
     <script type='text/javascript'>
-        window.Laravel = <?php echo json_encode([
+    window.Laravel = <?php echo json_encode([
                                 'csrfToken' => csrf_token(),
                             ]); ?>
     </script>
@@ -25,7 +25,9 @@
     </div>
 
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-
+    <script src="/js/manifest.js"></script>
+    <script src="/js/vendor.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 
-</html> 
+</html>

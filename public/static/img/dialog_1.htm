@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<title></title>
+<script>
+  var arr=location.href.split("?");
+  arr.push("");
+  window.addEventListener("message", function(event) {
+			document.getElementById("frame_a").contentWindow.postMessage(event.data,'*');
+   }, false );
+</script>
+</head>
+
+<script>
+  document.write("<frameset rows=\"*\" cols=\"*\" frameborder=\"no\" border=\"0\" framespacing=\"0\">");
+  var http_pro = (document.location.protocol == 'https:')?'https://':'http://'; 
+  document.write("<frame id='frame_a' src=\""+http_pro+"tb.53kf.com/webCompany.php?arg=10196547&style=1&"+arr[1]+"\" title=\"mainFrame\" />");
+  document.write("</frameset>");
+</script>
+<noframes><body>
+</body>
+</noframes>
+</html>

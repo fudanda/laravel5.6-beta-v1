@@ -31,16 +31,16 @@ if (token) {
 }
 
 import Vue from 'vue';
-import router from './routes.js';
-import store from './store.js';
+import router from './router/index';
+import store from './store/index';
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
+import Viser from 'viser-vue'
 
-
-
+Vue.prototype.$axios = axios
 Vue.config.productionTip = false;
-Vue.use(Antd);
-
+Vue.use(Antd)
+Vue.use(Viser)
 
 new Vue({
     router,

@@ -13,7 +13,9 @@
         "laravel/framework": "5.8.*",
         "laravel/passport": "^7.2",
         "laravel/socialite": "^4.1",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "noh4ck/graphiql": "@dev",
+        "rebing/graphql-laravel": "^1.20"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

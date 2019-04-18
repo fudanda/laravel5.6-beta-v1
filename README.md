@@ -1,6 +1,8 @@
 # laravel
 laravel5.8
-
+    composer install
+    npm      install
+    php artisan key:generate
 # laravel-graphql 命令
 **安装**
 

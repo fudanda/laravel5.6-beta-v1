@@ -43,4 +43,5 @@ mix.js('resources/js/app.js', 'public/js')
         }
     })
     .extract(['vue'])
+    .browserSync('www.l.com')
     .version([]);

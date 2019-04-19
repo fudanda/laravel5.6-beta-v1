@@ -37,8 +37,35 @@ import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 import Viser from 'viser-vue'
 import api from './api/api'
-Vue.prototype.$axios = axios
 
+/**graphql */
+import {
+    ApolloClient
+} from 'apollo-client'
+import {
+    HttpLink
+} from 'apollo-link-http'
+import {
+    InMemoryCache
+} from 'apollo-cache-inmemory'
+import VueApollo from 'vue-apollo'
+
+const httpLink = new HttpLink({
+    // GraphQL 服务器 URL，需要使用绝对路径
+    uri: 'http://www.l.com/graphql'
+})
+
+// 创建 apollo client
+const apolloClient = new ApolloClient({
+    link: httpLink,
+    cache: new InMemoryCache()
+})
+
+// 安装 vue plugin
+Vue.use(VueApollo)
+/**graphql */
+
+Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 Vue.prototype.$api = api
 Vue.use(Antd)
@@ -46,5 +73,6 @@ Vue.use(Viser)
 
 new Vue({
     router,
-    store
+    store,
+    apolloProvider,
 }).$mount('#app')

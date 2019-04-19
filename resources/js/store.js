@@ -20,14 +20,10 @@ import Vuex from 'vuex'
  * Initializes Vuex on Vue.
  */
 Vue.use(Vuex)
-// import {
-//     cafes
-// } from './modules/cafes'
+
 /**
  * Export our data store.
  */
 export default new Vuex.Store({
-    modules: {
-        // cafes
-    }
+    modules: {}
 });

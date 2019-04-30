@@ -8,7 +8,7 @@ class AppController extends Controller
 {
     public function getApp()
     {
-        return view('app');
+        return view('admin.app');
     }
     public function getLogin()
     {

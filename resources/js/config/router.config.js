@@ -10,6 +10,8 @@ import {
     bxAnaalyse
 } from '@/core/icons'
 
+
+
 export const asyncRouterMap = [
 
     {

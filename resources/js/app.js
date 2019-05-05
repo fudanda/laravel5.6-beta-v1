@@ -60,7 +60,9 @@ const apolloClient = new ApolloClient({
     link: httpLink,
     cache: new InMemoryCache()
 })
-
+const apolloProvider = new VueApollo({
+    defaultClient: apolloClient
+})
 // 安装 vue plugin
 Vue.use(VueApollo)
 /**graphql */

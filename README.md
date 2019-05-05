@@ -1,7 +1,9 @@
 # laravel
 laravel5.8
     composer install
-    npm      install
+    npm      install   (fsevents是mac下用的，windows忽略)
+
+
     php artisan key:generate
 # laravel-graphql 命令
 **安装**

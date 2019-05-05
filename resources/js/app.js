@@ -31,12 +31,12 @@ if (token) {
 }
 
 import Vue from 'vue';
-import router from './router/index'
-import store from './store/index'
+import router from '@/router/index'
+import store from '@/store/index'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 import Viser from 'viser-vue'
-import api from './api/index'
+import api from '@/api/index'
 
 /**graphql */
 import {

@@ -11,12 +11,12 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix.js('resources/js/app.js', 'public')
     // .sass('resources/sass/app.scss', 'public/css')
     .less('resources/less/app.less', 'public/css').webpackConfig({
-        // output: {
-        //     chunkFilename: 'js/[name].js'
-        // },
+        output: {
+            chunkFilename: 'js/[name].js'
+        },
         module: {
             rules: [{
                     test: /\.less?$/,
@@ -27,19 +27,24 @@ mix.js('resources/js/app.js', 'public/js')
                         }
                     }]
                 },
-                // {
-                //     test: /\.jsx?$/,
-                //     // exclude: /node_modules(?!\/ant-design-vue)/,
-                //     use: [{
-                //         loader: 'babel-loader',
-                //         options: {
-                //             presets: ['env']
-                //         }
-                //     }]
-                // },
+
+
+                {
+                    test: /\.jsx?$/,
+                    exclude: /node_modules(?!\/ant-design-vue)/,
+                    use: [{
+                        loader: 'babel-loader',
+                        options: Config.babel()
+                    }]
+                },
 
 
             ]
+        },
+        resolve: {
+            alias: {
+                '@': path.resolve('resources/js')
+            }
         }
     })
     .extract(['vue', 'ant-design-vue', 'vuex'])

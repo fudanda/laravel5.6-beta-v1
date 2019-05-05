@@ -42,6 +42,6 @@ mix.js('resources/js/app.js', 'public/js')
             ]
         }
     })
-    .extract(['vue'])
+    .extract(['vue', 'ant-design-vue', 'vuex'])
     .browserSync('www.l.com')
     .version([]);

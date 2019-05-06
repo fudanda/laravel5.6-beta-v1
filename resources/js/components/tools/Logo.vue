@@ -1,24 +1,25 @@
 <template>
   <div class="logo">
     <router-link :to="{name:'dashboard'}">
-      <LogoSvg alt="logo" />
+      <LogoSvg alt="logo"/>
       <h1 v-if="showTitle">{{ title }}</h1>
     </router-link>
   </div>
 </template>
 
 <script>
-import LogoSvg from '@/assets/logo.svg?inline'
+// import LogoSvg from '@/assets/logo.svg?inline'
+import LogoSvg from "@/assets/logo.svg";
 
 export default {
-  name: 'Logo',
+  name: "Logo",
   components: {
     LogoSvg
   },
   props: {
     title: {
       type: String,
-      default: 'Ant Design Pro',
+      default: "Ant Design Pro",
       required: false
     },
     showTitle: {
@@ -27,5 +28,5 @@ export default {
       required: false
     }
   }
-}
+};
 </script>

@@ -41,6 +41,7 @@
         "@antv/data-set": "^0.10.2",
         "@babel/core": "^7.4.3",
         "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+        "@babel/polyfill": "^7.4.4",
         "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0-beta.3",
         "@vue/babel-preset-jsx": "^1.0.0-beta.3",
         "apollo-cache-inmemory": "^1.5.1",
@@ -56,9 +57,14 @@
         "graphql-tag": "^2.10.1",
         "lodash.get": "^4.4.2",
         "lodash.pick": "^4.4.0",
+        "mockjs2": "^1.0.5",
+        "nprogress": "^0.2.0",
         "path-to-regexp": "^3.0.0",
         "viser-vue": "^2.4.5",
         "vue-apollo": "^3.0.0-alpha.3",
+        "vue-clipboard2": "^0.3.0",
+        "vue-cropper": "^0.4.9",
+        "vue-ls": "^3.2.1",
         "vuedraggable": "^2.20.0"
     }
 }

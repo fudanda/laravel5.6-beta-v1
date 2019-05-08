@@ -16,107 +16,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/advanced/Advanced.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/babel-loader/lib??ref--12-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/profile/advanced/Advanced.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/basic/Index.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/babel-loader/lib??ref--12-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/profile/basic/Index.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _utils_mixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/utils/mixin */ "./resources/js/utils/mixin.js");
-/* harmony import */ var _layouts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/layouts */ "./resources/js/layouts/index.js");
+/* harmony import */ var _layouts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/layouts */ "./resources/js/layouts/index.js");
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components */ "./resources/js/components/index.js");
 /* harmony import */ var _components_tools_DetailList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/tools/DetailList */ "./resources/js/components/tools/DetailList.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -168,149 +79,181 @@ __webpack_require__.r(__webpack_exports__);
 
 var DetailListItem = _components_tools_DetailList__WEBPACK_IMPORTED_MODULE_2__["default"].Item;
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Advanced',
   components: {
-    PageView: _layouts__WEBPACK_IMPORTED_MODULE_1__["PageView"],
+    PageView: _layouts__WEBPACK_IMPORTED_MODULE_0__["PageView"],
     DetailList: _components_tools_DetailList__WEBPACK_IMPORTED_MODULE_2__["default"],
-    DetailListItem: DetailListItem
+    DetailListItem: DetailListItem,
+    STable: _components__WEBPACK_IMPORTED_MODULE_1__["STable"]
   },
-  mixins: [_utils_mixin__WEBPACK_IMPORTED_MODULE_0__["mixinDevice"]],
   data: function data() {
     return {
-      tabList: [{
-        key: '1',
-        tab: '操作日志一'
+      goodsColumns: [{
+        title: '商品编号',
+        dataIndex: 'id',
+        key: 'id'
       }, {
-        key: '2',
-        tab: '操作日志二'
-      }, {
-        key: '3',
-        tab: '操作日志三'
-      }],
-      activeTabKey: '1',
-      operationColumns: [{
-        title: '操作类型',
-        dataIndex: 'type',
-        key: 'type'
-      }, {
-        title: '操作人',
+        title: '商品名称',
         dataIndex: 'name',
         key: 'name'
       }, {
-        title: '执行结果',
+        title: '商品条码',
+        dataIndex: 'barcode',
+        key: 'barcode'
+      }, {
+        title: '单价',
+        dataIndex: 'price',
+        key: 'price',
+        align: 'right'
+      }, {
+        title: '数量（件）',
+        dataIndex: 'num',
+        key: 'num',
+        align: 'right'
+      }, {
+        title: '金额',
+        dataIndex: 'amount',
+        key: 'amount',
+        align: 'right'
+      }],
+      // 加载数据方法 必须为 Promise 对象
+      loadGoodsData: function loadGoodsData() {
+        return new Promise(function (resolve) {
+          resolve({
+            data: [{
+              id: '1234561',
+              name: '矿泉水 550ml',
+              barcode: '12421432143214321',
+              price: '2.00',
+              num: '1',
+              amount: '2.00'
+            }, {
+              id: '1234562',
+              name: '凉茶 300ml',
+              barcode: '12421432143214322',
+              price: '3.00',
+              num: '2',
+              amount: '6.00'
+            }, {
+              id: '1234563',
+              name: '好吃的薯片',
+              barcode: '12421432143214323',
+              price: '7.00',
+              num: '4',
+              amount: '28.00'
+            }, {
+              id: '1234564',
+              name: '特别好吃的蛋卷',
+              barcode: '12421432143214324',
+              price: '8.50',
+              num: '3',
+              amount: '25.50'
+            }],
+            pageSize: 10,
+            pageNo: 1,
+            totalPage: 1,
+            totalCount: 10
+          });
+        }).then(function (res) {
+          return res;
+        });
+      },
+      scheduleColumns: [{
+        title: '时间',
+        dataIndex: 'time',
+        key: 'time'
+      }, {
+        title: '当前进度',
+        dataIndex: 'rate',
+        key: 'rate'
+      }, {
+        title: '状态',
         dataIndex: 'status',
         key: 'status',
         scopedSlots: {
           customRender: 'status'
         }
       }, {
-        title: '操作时间',
-        dataIndex: 'updatedAt',
-        key: 'updatedAt'
+        title: '操作员ID',
+        dataIndex: 'operator',
+        key: 'operator'
       }, {
-        title: '备注',
-        dataIndex: 'remark',
-        key: 'remark'
+        title: '耗时',
+        dataIndex: 'cost',
+        key: 'cost'
       }],
-      operation1: [{
-        key: 'op1',
-        type: '订购关系生效',
-        name: '曲丽丽',
-        status: 'agree',
-        updatedAt: '2017-10-03  19:23:12',
-        remark: '-'
-      }, {
-        key: 'op2',
-        type: '财务复审',
-        name: '付小小',
-        status: 'reject',
-        updatedAt: '2017-10-03  19:23:12',
-        remark: '不通过原因'
-      }, {
-        key: 'op3',
-        type: '部门初审',
-        name: '周毛毛',
-        status: 'agree',
-        updatedAt: '2017-10-03  19:23:12',
-        remark: '-'
-      }, {
-        key: 'op4',
-        type: '提交订单',
-        name: '林东东',
-        status: 'agree',
-        updatedAt: '2017-10-03  19:23:12',
-        remark: '很棒'
-      }, {
-        key: 'op5',
-        type: '创建订单',
-        name: '汗牙牙',
-        status: 'agree',
-        updatedAt: '2017-10-03  19:23:12',
-        remark: '-'
-      }],
-      operation2: [{
-        key: 'op2',
-        type: '财务复审',
-        name: '付小小',
-        status: 'reject',
-        updatedAt: '2017-10-03  19:23:12',
-        remark: '不通过原因'
-      }, {
-        key: 'op3',
-        type: '部门初审',
-        name: '周毛毛',
-        status: 'agree',
-        updatedAt: '2017-10-03  19:23:12',
-        remark: '-'
-      }, {
-        key: 'op4',
-        type: '提交订单',
-        name: '林东东',
-        status: 'agree',
-        updatedAt: '2017-10-03  19:23:12',
-        remark: '很棒'
-      }],
-      operation3: [{
-        key: 'op2',
-        type: '财务复审',
-        name: '付小小',
-        status: 'reject',
-        updatedAt: '2017-10-03  19:23:12',
-        remark: '不通过原因'
-      }, {
-        key: 'op3',
-        type: '部门初审',
-        name: '周毛毛',
-        status: 'agree',
-        updatedAt: '2017-10-03  19:23:12',
-        remark: '-'
-      }]
+      loadScheduleData: function loadScheduleData() {
+        return new Promise(function (resolve) {
+          resolve({
+            data: [{
+              key: '1',
+              time: '2017-10-01 14:10',
+              rate: '联系客户',
+              status: 'processing',
+              operator: '取货员 ID1234',
+              cost: '5mins'
+            }, {
+              key: '2',
+              time: '2017-10-01 14:05',
+              rate: '取货员出发',
+              status: 'success',
+              operator: '取货员 ID1234',
+              cost: '1h'
+            }, {
+              key: '3',
+              time: '2017-10-01 13:05',
+              rate: '取货员接单',
+              status: 'success',
+              operator: '取货员 ID1234',
+              cost: '5mins'
+            }, {
+              key: '4',
+              time: '2017-10-01 13:00',
+              rate: '申请审批通过',
+              status: 'success',
+              operator: '系统',
+              cost: '1h'
+            }, {
+              key: '5',
+              time: '2017-10-01 12:00',
+              rate: '发起退货申请',
+              status: 'success',
+              operator: '用户',
+              cost: '5mins'
+            }],
+            pageSize: 10,
+            pageNo: 1,
+            totalPage: 1,
+            totalCount: 10
+          });
+        }).then(function (res) {
+          return res;
+        });
+      }
     };
   },
   filters: {
     statusFilter: function statusFilter(status) {
       var statusMap = {
-        'agree': '成功',
-        'reject': '驳回'
+        'processing': '进行中',
+        'success': '完成',
+        'failed': '失败'
       };
       return statusMap[status];
-    },
-    statusTypeFilter: function statusTypeFilter(type) {
-      var statusTypeMap = {
-        'agree': 'success',
-        'reject': 'error'
-      };
-      return statusTypeMap[type];
+    }
+  },
+  computed: {
+    title: function title() {
+      return this.$route.meta.title;
     }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/advanced/Advanced.vue?vue&type=style&index=0&id=4363f43a&lang=less&scoped=true&":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--9-2!./node_modules/less-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/profile/advanced/Advanced.vue?vue&type=style&index=0&id=4363f43a&lang=less&scoped=true& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/basic/Index.vue?vue&type=style&index=0&id=7ba0397c&lang=less&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--9-2!./node_modules/less-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/profile/basic/Index.vue?vue&type=style&index=0&id=7ba0397c&lang=less&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -319,22 +262,22 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".detail-layout[data-v-4363f43a] {\n  margin-left: 44px;\n}\n.text[data-v-4363f43a] {\n  color: rgba(0, 0, 0, 0.45);\n}\n.heading[data-v-4363f43a] {\n  color: rgba(0, 0, 0, 0.85);\n  font-size: 20px;\n}\n.no-data[data-v-4363f43a] {\n  color: rgba(0, 0, 0, 0.25);\n  text-align: center;\n  line-height: 64px;\n  font-size: 16px;\n}\n.no-data i[data-v-4363f43a] {\n  font-size: 24px;\n  margin-right: 16px;\n  position: relative;\n  top: 3px;\n}\n.mobile .detail-layout[data-v-4363f43a] {\n  margin-left: unset;\n}\n.mobile .status-list[data-v-4363f43a] {\n  text-align: left;\n}\n", ""]);
+exports.push([module.i, ".title[data-v-7ba0397c] {\n  color: rgba(0, 0, 0, 0.85);\n  font-size: 16px;\n  font-weight: 500;\n  margin-bottom: 16px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/advanced/Advanced.vue?vue&type=style&index=0&id=4363f43a&lang=less&scoped=true&":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--9-2!./node_modules/less-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/profile/advanced/Advanced.vue?vue&type=style&index=0&id=4363f43a&lang=less&scoped=true& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/basic/Index.vue?vue&type=style&index=0&id=7ba0397c&lang=less&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--9-2!./node_modules/less-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/profile/basic/Index.vue?vue&type=style&index=0&id=7ba0397c&lang=less&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--9-2!../../../../../node_modules/less-loader/dist/cjs.js!../../../../../node_modules/less-loader/dist/cjs.js??ref--11-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Advanced.vue?vue&type=style&index=0&id=4363f43a&lang=less&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/advanced/Advanced.vue?vue&type=style&index=0&id=4363f43a&lang=less&scoped=true&");
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--9-2!../../../../../node_modules/less-loader/dist/cjs.js!../../../../../node_modules/less-loader/dist/cjs.js??ref--11-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Index.vue?vue&type=style&index=0&id=7ba0397c&lang=less&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/basic/Index.vue?vue&type=style&index=0&id=7ba0397c&lang=less&scoped=true&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -356,10 +299,10 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/advanced/Advanced.vue?vue&type=template&id=4363f43a&scoped=true&":
-/*!***********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/profile/advanced/Advanced.vue?vue&type=template&id=4363f43a&scoped=true& ***!
-  \***********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/basic/Index.vue?vue&type=template&id=7ba0397c&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/profile/basic/Index.vue?vue&type=template&id=7ba0397c&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -368,381 +311,112 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 var render = function() {
-  var this$1 = this
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
     "page-view",
-    {
-      attrs: {
-        title: "单号：234231029431",
-        logo:
-          "https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png"
-      }
-    },
+    { attrs: { title: _vm.title } },
     [
       _c(
-        "detail-list",
-        {
-          staticClass: "detail-layout",
-          attrs: { slot: "headerContent", size: "small", col: 2 },
-          slot: "headerContent"
-        },
-        [
-          _c("detail-list-item", { attrs: { term: "创建人" } }, [
-            _vm._v("曲丽丽")
-          ]),
-          _vm._v(" "),
-          _c("detail-list-item", { attrs: { term: "订购产品" } }, [
-            _vm._v("XX服务")
-          ]),
-          _vm._v(" "),
-          _c("detail-list-item", { attrs: { term: "创建时间" } }, [
-            _vm._v("2018-08-07")
-          ]),
-          _vm._v(" "),
-          _c("detail-list-item", { attrs: { term: "关联单据" } }, [
-            _c("a", [_vm._v("12421")])
-          ]),
-          _vm._v(" "),
-          _c("detail-list-item", { attrs: { term: "生效日期" } }, [
-            _vm._v("2018-08-07 ~ 2018-12-11")
-          ]),
-          _vm._v(" "),
-          _c("detail-list-item", { attrs: { term: "备注" } }, [
-            _vm._v("请于两个工作日内确认")
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "a-row",
-        { staticClass: "status-list", attrs: { slot: "extra" }, slot: "extra" },
-        [
-          _c("a-col", { attrs: { xs: 12, sm: 12 } }, [
-            _c("div", { staticClass: "text" }, [_vm._v("状态")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "heading" }, [_vm._v("待审批")])
-          ]),
-          _vm._v(" "),
-          _c("a-col", { attrs: { xs: 12, sm: 12 } }, [
-            _c("div", { staticClass: "text" }, [_vm._v("订单金额")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "heading" }, [_vm._v("¥ 568.08")])
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "template",
-        { slot: "action" },
-        [
-          _c(
-            "a-button-group",
-            { staticStyle: { "margin-right": "4px" } },
-            [
-              _c("a-button", [_vm._v("操作")]),
-              _vm._v(" "),
-              _c("a-button", [_vm._v("操作")]),
-              _vm._v(" "),
-              _c("a-button", [_c("a-icon", { attrs: { type: "ellipsis" } })], 1)
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("a-button", { attrs: { type: "primary" } }, [_vm._v("主操作")])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
         "a-card",
-        { attrs: { bordered: false, title: "流程进度" } },
-        [
-          _c(
-            "a-steps",
-            {
-              attrs: {
-                direction: (_vm.isMobile() && "vertical") || "horizontal",
-                current: 1,
-                progressDot: ""
-              }
-            },
-            [
-              _c("a-step", { attrs: { title: "创建项目" } }),
-              _vm._v(" "),
-              _c("a-step", { attrs: { title: "部门初审" } }),
-              _vm._v(" "),
-              _c("a-step", { attrs: { title: "财务复核" } }),
-              _vm._v(" "),
-              _c("a-step", { attrs: { title: "完成" } })
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "a-card",
-        {
-          staticStyle: { "margin-top": "24px" },
-          attrs: { bordered: false, title: "用户信息" }
-        },
+        { attrs: { bordered: false } },
         [
           _c(
             "detail-list",
+            { attrs: { title: "退款申请" } },
             [
-              _c("detail-list-item", { attrs: { term: "用户姓名" } }, [
-                _vm._v("付晓晓")
+              _c("detail-list-item", { attrs: { term: "取货单号" } }, [
+                _vm._v("1000000000")
               ]),
               _vm._v(" "),
-              _c("detail-list-item", { attrs: { term: "会员卡号" } }, [
-                _vm._v("32943898021309809423")
+              _c("detail-list-item", { attrs: { term: "状态" } }, [
+                _vm._v("已取货")
               ]),
               _vm._v(" "),
-              _c("detail-list-item", { attrs: { term: "身份证" } }, [
-                _vm._v("3321944288191034921")
+              _c("detail-list-item", { attrs: { term: "销售单号" } }, [
+                _vm._v("1234123421")
               ]),
               _vm._v(" "),
-              _c("detail-list-item", { attrs: { term: "联系方式" } }, [
-                _vm._v("18112345678")
-              ]),
-              _vm._v(" "),
-              _c("detail-list-item", { attrs: { term: "联系地址" } }, [
-                _vm._v("浙江省杭州市西湖区黄姑山路工专路交叉路口")
+              _c("detail-list-item", { attrs: { term: "子订单" } }, [
+                _vm._v("3214321432")
               ])
             ],
             1
           ),
           _vm._v(" "),
+          _c("a-divider", { staticStyle: { "margin-bottom": "32px" } }),
+          _vm._v(" "),
           _c(
             "detail-list",
-            { attrs: { title: "信息组" } },
+            { attrs: { title: "用户信息" } },
             [
-              _c("detail-list-item", { attrs: { term: "某某数据" } }, [
-                _vm._v("725")
+              _c("detail-list-item", { attrs: { term: "用户姓名" } }, [
+                _vm._v("付小小")
               ]),
               _vm._v(" "),
-              _c("detail-list-item", { attrs: { term: "该数据更新时间" } }, [
-                _vm._v("2018-08-08")
+              _c("detail-list-item", { attrs: { term: "联系电话" } }, [
+                _vm._v("18100000000")
               ]),
               _vm._v(" "),
-              _c("detail-list-item"),
-              _vm._v(" "),
-              _c("detail-list-item", { attrs: { term: "某某数据" } }, [
-                _vm._v("725")
+              _c("detail-list-item", { attrs: { term: "常用快递" } }, [
+                _vm._v("菜鸟仓储")
               ]),
               _vm._v(" "),
-              _c("detail-list-item", { attrs: { term: "该数据更新时间" } }, [
-                _vm._v("2018-08-08")
+              _c("detail-list-item", { attrs: { term: "取货地址" } }, [
+                _vm._v("浙江省杭州市西湖区万塘路18号")
               ]),
               _vm._v(" "),
-              _c("detail-list-item")
+              _c("detail-list-item", { attrs: { term: "备注" } }, [
+                _vm._v("\t无")
+              ])
             ],
             1
           ),
           _vm._v(" "),
-          _c(
-            "a-card",
-            { attrs: { type: "inner", title: "多层信息组" } },
-            [
-              _c(
-                "detail-list",
-                { attrs: { title: "组名称", size: "small" } },
-                [
-                  _c("detail-list-item", { attrs: { term: "负责人" } }, [
-                    _vm._v("林东东")
-                  ]),
-                  _vm._v(" "),
-                  _c("detail-list-item", { attrs: { term: "角色码" } }, [
-                    _vm._v("1234567")
-                  ]),
-                  _vm._v(" "),
-                  _c("detail-list-item", { attrs: { term: "所属部门" } }, [
-                    _vm._v("XX公司-YY部")
-                  ]),
-                  _vm._v(" "),
-                  _c("detail-list-item", { attrs: { term: "过期时间" } }, [
-                    _vm._v("2018-08-08")
-                  ]),
-                  _vm._v(" "),
-                  _c("detail-list-item", { attrs: { term: "描述" } }, [
-                    _vm._v(
-                      "这段描述很长很长很长很长很长很长很长很长很长很长很长很长很长很长..."
-                    )
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("a-divider", { staticStyle: { margin: "16px 0" } }),
-              _vm._v(" "),
-              _c(
-                "detail-list",
-                { attrs: { title: "组名称", size: "small", col: 1 } },
-                [
-                  _c("detail-list-item", { attrs: { term: "学名" } }, [
-                    _vm._v(
-                      "\tCitrullus lanatus (Thunb.) Matsum. et Nakai一年生蔓生藤本；茎、枝粗壮，具明显的棱。卷须较粗.."
-                    )
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("a-divider", { staticStyle: { margin: "16px 0" } }),
-              _vm._v(" "),
-              _c(
-                "detail-list",
-                { attrs: { title: "组名称", size: "small", col: 2 } },
-                [
-                  _c("detail-list-item", { attrs: { term: "负责人" } }, [
-                    _vm._v("付小小")
-                  ]),
-                  _vm._v(" "),
-                  _c("detail-list-item", { attrs: { term: "角色码" } }, [
-                    _vm._v("1234567")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "a-card",
-        {
-          staticStyle: { "margin-top": "24px" },
-          attrs: { bordered: false, title: "用户近半年来电记录" }
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "no-data" },
-            [_c("a-icon", { attrs: { type: "frown-o" } }), _vm._v("暂无数据")],
-            1
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "a-card",
-        {
-          staticStyle: { "margin-top": "24px" },
-          attrs: {
-            bordered: false,
-            tabList: _vm.tabList,
-            activeTabKey: _vm.activeTabKey
-          },
-          on: {
-            tabChange: function(key) {
-              this$1.activeTabKey = key
+          _c("a-divider", { staticStyle: { "margin-bottom": "32px" } }),
+          _vm._v(" "),
+          _c("div", { staticClass: "title" }, [_vm._v("退货商品")]),
+          _vm._v(" "),
+          _c("s-table", {
+            staticStyle: { "margin-bottom": "24px" },
+            attrs: {
+              "row-key": "id",
+              columns: _vm.goodsColumns,
+              data: _vm.loadGoodsData
             }
-          }
-        },
-        [
-          _vm.activeTabKey === "1"
-            ? _c("a-table", {
-                attrs: {
-                  columns: _vm.operationColumns,
-                  dataSource: _vm.operation1,
-                  pagination: false
-                },
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "status",
-                      fn: function(status) {
-                        return [
-                          _c("a-badge", {
-                            attrs: {
-                              status: _vm._f("statusTypeFilter")(status),
-                              text: _vm._f("statusFilter")(status)
-                            }
-                          })
-                        ]
-                      }
-                    }
-                  ],
-                  null,
-                  false,
-                  106314470
-                )
-              })
-            : _vm._e(),
+          }),
           _vm._v(" "),
-          _vm.activeTabKey === "2"
-            ? _c("a-table", {
-                attrs: {
-                  columns: _vm.operationColumns,
-                  dataSource: _vm.operation2,
-                  pagination: false
-                },
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "status",
-                      fn: function(status) {
-                        return [
-                          _c("a-badge", {
-                            attrs: {
-                              status: _vm._f("statusTypeFilter")(status),
-                              text: _vm._f("statusFilter")(status)
-                            }
-                          })
-                        ]
-                      }
-                    }
-                  ],
-                  null,
-                  false,
-                  106314470
-                )
-              })
-            : _vm._e(),
+          _c("div", { staticClass: "title" }, [_vm._v("退货进度")]),
           _vm._v(" "),
-          _vm.activeTabKey === "3"
-            ? _c("a-table", {
-                attrs: {
-                  columns: _vm.operationColumns,
-                  dataSource: _vm.operation3,
-                  pagination: false
-                },
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "status",
-                      fn: function(status) {
-                        return [
-                          _c("a-badge", {
-                            attrs: {
-                              status: _vm._f("statusTypeFilter")(status),
-                              text: _vm._f("statusFilter")(status)
-                            }
-                          })
-                        ]
+          _c("s-table", {
+            staticStyle: { "margin-bottom": "24px" },
+            attrs: {
+              "row-key": "key",
+              columns: _vm.scheduleColumns,
+              data: _vm.loadScheduleData
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "status",
+                fn: function(status) {
+                  return [
+                    _c("a-badge", {
+                      attrs: {
+                        status: status,
+                        text: _vm._f("statusFilter")(status)
                       }
-                    }
-                  ],
-                  null,
-                  false,
-                  106314470
-                )
-              })
-            : _vm._e()
+                    })
+                  ]
+                }
+              }
+            ])
+          })
         ],
         1
       )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -802,18 +476,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/profile/advanced/Advanced.vue":
-/*!**********************************************************!*\
-  !*** ./resources/js/views/profile/advanced/Advanced.vue ***!
-  \**********************************************************/
+/***/ "./resources/js/views/profile/basic/Index.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/views/profile/basic/Index.vue ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Advanced_vue_vue_type_template_id_4363f43a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Advanced.vue?vue&type=template&id=4363f43a&scoped=true& */ "./resources/js/views/profile/advanced/Advanced.vue?vue&type=template&id=4363f43a&scoped=true&");
-/* harmony import */ var _Advanced_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Advanced.vue?vue&type=script&lang=js& */ "./resources/js/views/profile/advanced/Advanced.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _Advanced_vue_vue_type_style_index_0_id_4363f43a_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Advanced.vue?vue&type=style&index=0&id=4363f43a&lang=less&scoped=true& */ "./resources/js/views/profile/advanced/Advanced.vue?vue&type=style&index=0&id=4363f43a&lang=less&scoped=true&");
+/* harmony import */ var _Index_vue_vue_type_template_id_7ba0397c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Index.vue?vue&type=template&id=7ba0397c&scoped=true& */ "./resources/js/views/profile/basic/Index.vue?vue&type=template&id=7ba0397c&scoped=true&");
+/* harmony import */ var _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Index.vue?vue&type=script&lang=js& */ "./resources/js/views/profile/basic/Index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Index_vue_vue_type_style_index_0_id_7ba0397c_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Index.vue?vue&type=style&index=0&id=7ba0397c&lang=less&scoped=true& */ "./resources/js/views/profile/basic/Index.vue?vue&type=style&index=0&id=7ba0397c&lang=less&scoped=true&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -824,66 +498,66 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _Advanced_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Advanced_vue_vue_type_template_id_4363f43a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Advanced_vue_vue_type_template_id_4363f43a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Index_vue_vue_type_template_id_7ba0397c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Index_vue_vue_type_template_id_7ba0397c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "4363f43a",
+  "7ba0397c",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/profile/advanced/Advanced.vue"
+component.options.__file = "resources/js/views/profile/basic/Index.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/profile/advanced/Advanced.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/views/profile/advanced/Advanced.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************/
+/***/ "./resources/js/views/profile/basic/Index.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/views/profile/basic/Index.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_babel_loader_lib_index_js_ref_12_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Advanced_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/babel-loader/lib??ref--12-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Advanced.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/advanced/Advanced.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_babel_loader_lib_index_js_ref_12_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Advanced_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_babel_loader_lib_index_js_ref_12_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/babel-loader/lib??ref--12-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/basic/Index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_babel_loader_lib_index_js_ref_12_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/views/profile/advanced/Advanced.vue?vue&type=style&index=0&id=4363f43a&lang=less&scoped=true&":
-/*!********************************************************************************************************************!*\
-  !*** ./resources/js/views/profile/advanced/Advanced.vue?vue&type=style&index=0&id=4363f43a&lang=less&scoped=true& ***!
-  \********************************************************************************************************************/
+/***/ "./resources/js/views/profile/basic/Index.vue?vue&type=style&index=0&id=7ba0397c&lang=less&scoped=true&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/views/profile/basic/Index.vue?vue&type=style&index=0&id=7ba0397c&lang=less&scoped=true& ***!
+  \**************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_less_loader_dist_cjs_js_node_modules_less_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Advanced_vue_vue_type_style_index_0_id_4363f43a_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--9-2!../../../../../node_modules/less-loader/dist/cjs.js!../../../../../node_modules/less-loader/dist/cjs.js??ref--11-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Advanced.vue?vue&type=style&index=0&id=4363f43a&lang=less&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/advanced/Advanced.vue?vue&type=style&index=0&id=4363f43a&lang=less&scoped=true&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_less_loader_dist_cjs_js_node_modules_less_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Advanced_vue_vue_type_style_index_0_id_4363f43a_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_less_loader_dist_cjs_js_node_modules_less_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Advanced_vue_vue_type_style_index_0_id_4363f43a_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_less_loader_dist_cjs_js_node_modules_less_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Advanced_vue_vue_type_style_index_0_id_4363f43a_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_less_loader_dist_cjs_js_node_modules_less_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Advanced_vue_vue_type_style_index_0_id_4363f43a_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_less_loader_dist_cjs_js_node_modules_less_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Advanced_vue_vue_type_style_index_0_id_4363f43a_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_less_loader_dist_cjs_js_node_modules_less_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_style_index_0_id_7ba0397c_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--9-2!../../../../../node_modules/less-loader/dist/cjs.js!../../../../../node_modules/less-loader/dist/cjs.js??ref--11-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Index.vue?vue&type=style&index=0&id=7ba0397c&lang=less&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/basic/Index.vue?vue&type=style&index=0&id=7ba0397c&lang=less&scoped=true&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_less_loader_dist_cjs_js_node_modules_less_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_style_index_0_id_7ba0397c_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_less_loader_dist_cjs_js_node_modules_less_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_style_index_0_id_7ba0397c_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_less_loader_dist_cjs_js_node_modules_less_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_style_index_0_id_7ba0397c_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_less_loader_dist_cjs_js_node_modules_less_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_style_index_0_id_7ba0397c_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_9_2_node_modules_less_loader_dist_cjs_js_node_modules_less_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_style_index_0_id_7ba0397c_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ "./resources/js/views/profile/advanced/Advanced.vue?vue&type=template&id=4363f43a&scoped=true&":
-/*!*****************************************************************************************************!*\
-  !*** ./resources/js/views/profile/advanced/Advanced.vue?vue&type=template&id=4363f43a&scoped=true& ***!
-  \*****************************************************************************************************/
+/***/ "./resources/js/views/profile/basic/Index.vue?vue&type=template&id=7ba0397c&scoped=true&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/views/profile/basic/Index.vue?vue&type=template&id=7ba0397c&scoped=true& ***!
+  \***********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Advanced_vue_vue_type_template_id_4363f43a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Advanced.vue?vue&type=template&id=4363f43a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/advanced/Advanced.vue?vue&type=template&id=4363f43a&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Advanced_vue_vue_type_template_id_4363f43a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_7ba0397c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Index.vue?vue&type=template&id=7ba0397c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/profile/basic/Index.vue?vue&type=template&id=7ba0397c&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_7ba0397c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Advanced_vue_vue_type_template_id_4363f43a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_7ba0397c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

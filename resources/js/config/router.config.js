@@ -501,7 +501,7 @@ export const asyncRouterMap = [
 export const constantRouterMap = [{
         path: '/login',
         component: UserLayout,
-        redirect: '/user/login',
+        redirect: '/login/login',
         hidden: true,
         children: [{
                 path: 'login',

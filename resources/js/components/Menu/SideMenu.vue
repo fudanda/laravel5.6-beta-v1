@@ -4,38 +4,39 @@
     width="256px"
     :collapsible="collapsible"
     v-model="collapsed"
-    :trigger="null">
-    <logo />
+    :trigger="null"
+  >
+    <logo/>
     <s-menu
       :collapsed="collapsed"
       :menu="menus"
       :theme="theme"
       :mode="mode"
       @select="onSelect"
-      style="padding: 16px 0px;"></s-menu>
+      style="padding: 16px 0px;"
+    ></s-menu>
   </a-layout-sider>
-
 </template>
 
 <script>
-import Logo from '@/components/tools/Logo'
-import SMenu from './index'
-import { mixin, mixinDevice } from '@/utils/mixin'
+import Logo from "@/components/tools/Logo";
+import SMenu from "./index";
+import { mixin, mixinDevice } from "@/utils/mixin";
 
 export default {
-  name: 'SideMenu',
+  name: "SideMenu",
   components: { Logo, SMenu },
   mixins: [mixin, mixinDevice],
   props: {
     mode: {
       type: String,
       required: false,
-      default: 'inline'
+      default: "inline"
     },
     theme: {
       type: String,
       required: false,
-      default: 'dark'
+      default: "dark"
     },
     collapsible: {
       type: Boolean,
@@ -53,9 +54,9 @@ export default {
     }
   },
   methods: {
-    onSelect (obj) {
-      this.$emit('menuSelect', obj)
+    onSelect(obj) {
+      this.$emit("menuSelect", obj);
     }
   }
-}
+};
 </script>

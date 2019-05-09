@@ -44,15 +44,15 @@
 <script>
 import UserMenu from "../tools/UserMenu";
 import SMenu from "../Menu/";
-import Logo from "../tools/Logo";
+//import Logo from "../tools/Logo";
 import { mixin } from "@/utils/mixin";
 
 export default {
   name: "GlobalHeader",
   components: {
     UserMenu,
-    SMenu,
-    Logo
+    SMenu
+    //Logo
   },
   mixins: [mixin],
   props: {

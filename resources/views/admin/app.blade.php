@@ -8,16 +8,14 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <title>Roast</title>
     <script type='text/javascript'>
-    window.Laravel = <?php echo json_encode([
-                                'csrfToken' => csrf_token(),
-                            ]); ?>
+    window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?>
     </script>
 </head>
 <body>
     <div id="app">
         <router-view></router-view>
     </div>
-    <script src="/js/manifest.js"></script>
+    <script src="/manifest.js"></script>
     <script src="/js/vendor.chunk.js"></script>
     <script src="/js/app.chunk.js"></script>
 </body>

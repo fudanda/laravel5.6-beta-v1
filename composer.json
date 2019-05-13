@@ -15,7 +15,8 @@
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "noh4ck/graphiql": "@dev",
-        "rebing/graphql-laravel": "^1.20"
+        "rebing/graphql-laravel": "^1.20",
+        "swooletw/laravel-swoole": "^2.6"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -499,9 +499,9 @@ export const asyncRouterMap = [
  * @type { *[] }
  */
 export const constantRouterMap = [{
-        path: '/login',
+        path: '/user',
         component: UserLayout,
-        redirect: '/login/login',
+    redirect: '/user/login',
         hidden: true,
         children: [{
                 path: 'login',

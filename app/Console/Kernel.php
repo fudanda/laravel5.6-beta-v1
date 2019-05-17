@@ -14,7 +14,9 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
-        Commands\HawKing::class
+        Commands\HawKing::class,
+        Commands\GatewayWorkerServer::class,
+
     ];
 
     /**

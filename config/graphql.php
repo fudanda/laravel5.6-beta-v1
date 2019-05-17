@@ -97,6 +97,9 @@ return [
                 // 'example_query' => ExampleQuery::class,
                 'users' => App\GraphQL\Query\UserQuery::class,
                 'jobs' => App\GraphQL\Query\JobQuery::class,
+                'article' => App\GraphQL\Query\ArticleQuery::class,
+                'article_type' => App\GraphQL\Query\Article_TypeQuery::class,
+
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,
@@ -120,6 +123,8 @@ return [
         // 'relation_example'  => ExampleRelationType::class,
         'users' => App\GraphQL\Type\UserType::class,
         'jobs' => App\GraphQL\Type\JobType::class,
+        'article' => App\GraphQL\Type\ArticlType::class,
+        'article_type' => App\GraphQL\Type\Articl_TypeType::class,
     ],
 
     // This callable will be passed the Error object for each errors GraphQL catch.

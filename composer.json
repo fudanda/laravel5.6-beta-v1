@@ -16,7 +16,11 @@
         "laravel/tinker": "^1.0",
         "noh4ck/graphiql": "@dev",
         "rebing/graphql-laravel": "^1.20",
-        "swooletw/laravel-swoole": "^2.6"
+        "swooletw/laravel-swoole": "^2.6",
+        "workerman/gateway-worker": "^3.0",
+        "workerman/gatewayclient": "^3.0",
+        "workerman/workerman": "^3.5",
+        "hhxsv5/laravel-s":"3.5.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

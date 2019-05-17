@@ -11,13 +11,13 @@ use Rebing\GraphQL\Support\Query;
 class Article_TypeQuery extends Query
 {
     protected $attributes = [
-        'name' => 'Article_TypeQuery',
+        'name' => 'article_type',
         'description' => 'A query'
     ];
 
     public function type()
     {
-        return Type::listOf(Type::string());
+        return Type::listOf(GraphQL::type('article_type'));
     }
 
     public function args()
@@ -32,7 +32,7 @@ class Article_TypeQuery extends Query
                 'name' => 'article_type_name',
             ],
             'create_time' => [
-                'type' => Type::time(),
+                'type' => Type::string(),
                 'name' => 'create_time',
             ],
             'limit' => ['name' => 'limit', 'type' => Type::int()],

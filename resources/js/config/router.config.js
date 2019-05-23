@@ -107,6 +107,16 @@ export const asyncRouterMap = [
                             keepAlive: true,
                             permission: ['form']
                         }
+                    },
+                    {
+                        path: '/form/ajax-from',
+                        name: 'AjaxForm',
+                        component: () => import('@/views/form/ajax'),
+                        meta: {
+                            title: '循序请求',
+                            keepAlive: true,
+                            permission: ['form']
+                        }
                     }
                 ]
             },

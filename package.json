@@ -53,6 +53,7 @@
         "clipboard": "^2.0.4",
         "date-fns": "^1.30.1",
         "element-ui": "^2.7.2",
+        "grade-js": "^1.0.10",
         "graphql": "^14.2.1",
         "graphql-tag": "^2.10.1",
         "lodash.get": "^4.4.2",

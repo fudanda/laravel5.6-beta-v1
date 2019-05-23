@@ -180,8 +180,7 @@ return [
         Laravel\Passport\PassportServiceProvider::class,
 
         Graphiql\GraphiqlServiceProvider::class,
-        /** swool */
-        SwooleTW\Http\LaravelServiceProvider::class,
+
     ],
 
     /*

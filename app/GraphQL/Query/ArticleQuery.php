@@ -10,33 +10,36 @@ use Rebing\GraphQL\Support\Query;
 class ArticleQuery extends Query
 {
     protected $attributes = [
-        'name' => 'ArticleQuery',
+        'name' => 'article',
         'description' => 'A query'
     ];
 
     public function type()
     {
-        return Type::listOf(Type::string());
+        return Type::listOf(GraphQL::type('article'));
     }
 
     public function args()
     {
         return [
             'article_id' => [
-                'type' => Type::int(),
+                
                 'name' => 'article_id',
+                'type' => Type::int(),
             ],
             'article_title' => [
-                'type' => Type::string(),
+                
                 'name' => 'article_title',
+                'type' => Type::string(),
             ],
             'article_content' => [
-                'type' => Type::string(),
+                
                 'name' => 'article_content',
+                'type' => Type::string(),
             ],
             'article_litimg' => [
-                'type' => Type::string(),
                 'name' => 'article_litimg',
+                'type' => Type::string(),
             ],
             'limit' => ['name' => 'limit', 'type' => Type::int()],
         ];

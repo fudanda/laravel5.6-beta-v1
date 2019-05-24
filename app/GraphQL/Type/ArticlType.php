@@ -34,10 +34,7 @@ class ArticlType extends GraphQLType
                 'type' => Type::string(),
                 'description' => '用户的email',
             ],
-            'type' => [
-                'type' => Type::listOf(GraphQL::type('article_type')),
-                'description' => '文章分类',
-            ],
+            
         ];
     }
 }

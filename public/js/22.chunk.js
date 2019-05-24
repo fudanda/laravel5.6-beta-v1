@@ -1,16 +1,19 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[22],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/other/UserList.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/babel-loader/lib??ref--12-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/other/UserList.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/role/RoleList.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/babel-loader/lib??ref--12-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/role/RoleList.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components */ "./resources/js/components/index.js");
-/* harmony import */ var _api_manage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/api/manage */ "./resources/js/api/manage.js");
+/* harmony import */ var _api_manage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/api/manage */ "./resources/js/api/manage.js");
+/* harmony import */ var _utils_mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/utils/mixin */ "./resources/js/utils/mixin.js");
+/* harmony import */ var _utils_permissions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/utils/permissions */ "./resources/js/utils/permissions.js");
+/* harmony import */ var lodash_pick__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash.pick */ "./node_modules/lodash.pick/index.js");
+/* harmony import */ var lodash_pick__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_pick__WEBPACK_IMPORTED_MODULE_3__);
 //
 //
 //
@@ -75,211 +78,119 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'TableList',
-  components: {
-    STable: _components__WEBPACK_IMPORTED_MODULE_0__["STable"]
-  },
+  name: 'RoleList',
+  mixins: [_utils_mixin__WEBPACK_IMPORTED_MODULE_1__["mixinDevice"]],
+  components: {},
   data: function data() {
     return {
-      description: '列表使用场景：后台管理中的权限管理以及角色管理，可用于基于 RBAC 设计的角色权限控制，颗粒度细到每一个操作类型。',
-      visible: false,
-      labelCol: {
-        xs: {
-          span: 24
-        },
-        sm: {
-          span: 5
-        }
-      },
-      wrapperCol: {
-        xs: {
-          span: 24
-        },
-        sm: {
-          span: 16
-        }
-      },
-      form: null,
+      form: this.$form.createForm(this),
       mdl: {},
-      // 高级搜索 展开/关闭
-      advanced: false,
-      // 查询参数
-      queryParam: {},
-      // 表头
-      columns: [{
-        title: '唯一识别码',
-        dataIndex: 'id'
-      }, {
-        title: '角色名称',
-        dataIndex: 'name'
-      }, {
-        title: '状态',
-        dataIndex: 'status'
-      }, {
-        title: '创建时间',
-        dataIndex: 'createTime',
-        sorter: true
-      }, {
-        title: '操作',
-        width: '150px',
-        dataIndex: 'action',
-        scopedSlots: {
-          customRender: 'action'
-        }
-      }],
-      // 加载数据方法 必须为 Promise 对象
-      loadData: function loadData(parameter) {
-        return Object(_api_manage__WEBPACK_IMPORTED_MODULE_1__["getRoleList"])(parameter).then(function (res) {
-          console.log('getRoleList', res);
-          return res.result;
-        });
-      },
-      selectedRowKeys: [],
-      selectedRows: []
+      roles: [],
+      permissions: []
     };
   },
   created: function created() {
-    Object(_api_manage__WEBPACK_IMPORTED_MODULE_1__["getServiceList"])().then(function (res) {
-      console.log('getServiceList.call()', res);
+    var _this = this;
+
+    Object(_api_manage__WEBPACK_IMPORTED_MODULE_0__["getRoleList"])().then(function (res) {
+      _this.roles = res.result.data;
+
+      _this.roles.push({
+        id: '-1',
+        name: '新增角色',
+        describe: '新增一个角色'
+      });
+
+      console.log('this.roles', _this.roles);
     });
-    Object(_api_manage__WEBPACK_IMPORTED_MODULE_1__["getRoleList"])().then(function (res) {
-      console.log('getRoleList.call()', res);
-    });
+    this.loadPermissions();
   },
   methods: {
-    handleEdit: function handleEdit(record) {
-      this.mdl = Object.assign({}, record);
-      this.mdl.permissions.forEach(function (permission) {
-        permission.actionsOptions = permission.actionEntitySet.map(function (action) {
-          return {
-            label: action.describe,
-            value: action.action,
-            defaultCheck: action.defaultCheck
-          };
+    callback: function callback(val) {
+      console.log(val);
+    },
+    add: function add() {
+      this.edit({
+        id: 0
+      });
+    },
+    edit: function edit(record) {
+      var _this2 = this;
+
+      this.mdl = Object.assign({}, record); // 有权限表，处理勾选
+
+      if (this.mdl.permissions && this.permissions) {
+        // 先处理要勾选的权限结构
+        var permissionsAction = {};
+        this.mdl.permissions.forEach(function (permission) {
+          permissionsAction[permission.permissionId] = permission.actionEntitySet.map(function (entity) {
+            return entity.action;
+          });
+        });
+        console.log('permissionsAction', permissionsAction); // 把权限表遍历一遍，设定要勾选的权限 action
+
+        this.permissions.forEach(function (permission) {
+          var selected = permissionsAction[permission.id];
+          permission.selected = selected || [];
+
+          _this2.onChangeCheck(permission);
+        });
+        console.log('this.permissions', this.permissions);
+      }
+
+      this.$nextTick(function () {
+        _this2.form.setFieldsValue(lodash_pick__WEBPACK_IMPORTED_MODULE_3___default()(_this2.mdl, 'id', 'name', 'status', 'describe'));
+      });
+      console.log('this.mdl', this.mdl);
+    },
+    onChangeCheck: function onChangeCheck(permission) {
+      permission.indeterminate = !!permission.selected.length && permission.selected.length < permission.actionsOptions.length;
+      permission.checkedAll = permission.selected.length === permission.actionsOptions.length;
+    },
+    onChangeCheckAll: function onChangeCheckAll(e, permission) {
+      console.log('permission:', permission);
+      Object.assign(permission, {
+        selected: e.target.checked ? permission.actionsOptions.map(function (obj) {
+          return obj.value;
+        }) : [],
+        indeterminate: false,
+        checkedAll: e.target.checked
+      });
+    },
+    loadPermissions: function loadPermissions() {
+      var _this3 = this;
+
+      Object(_api_manage__WEBPACK_IMPORTED_MODULE_0__["getPermissions"])().then(function (res) {
+        var result = res.result;
+        _this3.permissions = result.map(function (permission) {
+          var options = Object(_utils_permissions__WEBPACK_IMPORTED_MODULE_2__["actionToObject"])(permission.actionData);
+          permission.checkedAll = false;
+          permission.selected = [];
+          permission.indeterminate = false;
+          permission.actionsOptions = options.map(function (option) {
+            return {
+              label: option.describe,
+              value: option.action
+            };
+          });
+          return permission;
         });
       });
-      this.visible = true;
-    },
-    handleOk: function handleOk() {},
-    onChange: function onChange(selectedRowKeys, selectedRows) {
-      this.selectedRowKeys = selectedRowKeys;
-      this.selectedRows = selectedRows;
-    },
-    toggleAdvanced: function toggleAdvanced() {
-      this.advanced = !this.advanced;
     }
-  },
-  watch: {
-    /*
-      'selectedRows': function (selectedRows) {
-        this.needTotalList = this.needTotalList.map(item => {
-          return {
-            ...item,
-            total: selectedRows.reduce( (sum, val) => {
-              return sum + val[item.dataIndex]
-            }, 0)
-          }
-        })
-      }
-      */
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/other/UserList.vue?vue&type=template&id=42d64e07&":
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/other/UserList.vue?vue&type=template&id=42d64e07& ***!
-  \************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/role/RoleList.vue?vue&type=template&id=28ad9a44&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/role/RoleList.vue?vue&type=template&id=28ad9a44&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -288,421 +199,298 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 var render = function() {
-  var this$1 = this
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
     "a-card",
-    { attrs: { bordered: false } },
+    { style: { height: "100%" }, attrs: { bordered: false } },
     [
       _c(
-        "div",
-        { staticClass: "table-page-search-wrapper" },
+        "a-row",
+        { attrs: { gutter: 24 } },
         [
           _c(
-            "a-form",
-            { attrs: { layout: "inline" } },
+            "a-col",
+            { attrs: { md: 4 } },
             [
-              _c(
-                "a-row",
-                { attrs: { gutter: 48 } },
-                [
-                  _c(
-                    "a-col",
-                    { attrs: { md: 8, sm: 24 } },
-                    [
-                      _c(
-                        "a-form-item",
-                        { attrs: { label: "角色ID" } },
-                        [_c("a-input", { attrs: { placeholder: "请输入" } })],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a-col",
-                    { attrs: { md: 8, sm: 24 } },
-                    [
-                      _c(
-                        "a-form-item",
-                        { attrs: { label: "状态" } },
+              _c("a-list", {
+                attrs: { itemLayout: "vertical", dataSource: _vm.roles },
+                scopedSlots: _vm._u([
+                  {
+                    key: "renderItem",
+                    fn: function(item, index) {
+                      return _c(
+                        "a-list-item",
+                        { key: index },
                         [
                           _c(
-                            "a-select",
-                            {
-                              attrs: {
-                                placeholder: "请选择",
-                                "default-value": "0"
-                              }
-                            },
+                            "a-list-item-meta",
+                            { style: { marginBottom: "0" } },
                             [
-                              _c("a-select-option", { attrs: { value: "0" } }, [
-                                _vm._v("全部")
-                              ]),
+                              _c(
+                                "span",
+                                {
+                                  staticStyle: {
+                                    "text-align": "center",
+                                    display: "block"
+                                  },
+                                  attrs: { slot: "description" },
+                                  slot: "description"
+                                },
+                                [_vm._v(_vm._s(item.describe))]
+                              ),
                               _vm._v(" "),
-                              _c("a-select-option", { attrs: { value: "1" } }, [
-                                _vm._v("关闭")
-                              ]),
-                              _vm._v(" "),
-                              _c("a-select-option", { attrs: { value: "2" } }, [
-                                _vm._v("运行中")
-                              ])
-                            ],
-                            1
+                              _c(
+                                "a",
+                                {
+                                  staticStyle: {
+                                    "text-align": "center",
+                                    display: "block"
+                                  },
+                                  attrs: { slot: "title" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.edit(item)
+                                    }
+                                  },
+                                  slot: "title"
+                                },
+                                [_vm._v(_vm._s(item.name))]
+                              )
+                            ]
                           )
                         ],
                         1
                       )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("a-col", { attrs: { md: 8, sm: 24 } }, [
+                    }
+                  }
+                ])
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("a-col", { attrs: { md: 20 } }, [
+            _c(
+              "div",
+              { staticStyle: { "max-width": "800px" } },
+              [
+                _vm.isMobile() ? _c("a-divider") : _vm._e(),
+                _vm._v(" "),
+                _vm.mdl.id
+                  ? _c("div", [
+                      _c("h3", [_vm._v("角色：" + _vm._s(_vm.mdl.name))])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "a-form",
+                  {
+                    attrs: {
+                      form: _vm.form,
+                      layout: _vm.isMobile() ? "vertical" : "horizontal"
+                    }
+                  },
+                  [
                     _c(
-                      "span",
-                      { staticClass: "table-page-search-submitButtons" },
+                      "a-form-item",
+                      { attrs: { label: "唯一键" } },
                       [
-                        _c("a-button", { attrs: { type: "primary" } }, [
-                          _vm._v("查询")
-                        ]),
-                        _vm._v(" "),
+                        _c("a-input", {
+                          directives: [
+                            {
+                              name: "decorator",
+                              rawName: "v-decorator",
+                              value: [
+                                "id",
+                                {
+                                  rules: [
+                                    {
+                                      required: true,
+                                      message: "Please input unique key!"
+                                    }
+                                  ]
+                                }
+                              ],
+                              expression:
+                                "[ 'id', {rules: [{ required: true, message: 'Please input unique key!' }]} ]"
+                            }
+                          ],
+                          attrs: { placeholder: "请填写唯一键" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a-form-item",
+                      { attrs: { label: "角色名称" } },
+                      [
+                        _c("a-input", {
+                          directives: [
+                            {
+                              name: "decorator",
+                              rawName: "v-decorator",
+                              value: [
+                                "name",
+                                {
+                                  rules: [
+                                    {
+                                      required: true,
+                                      message: "Please input role name!"
+                                    }
+                                  ]
+                                }
+                              ],
+                              expression:
+                                "[ 'name', {rules: [{ required: true, message: 'Please input role name!' }]} ]"
+                            }
+                          ],
+                          attrs: { placeholder: "请填写角色名称" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a-form-item",
+                      { attrs: { label: "状态" } },
+                      [
                         _c(
-                          "a-button",
-                          { staticStyle: { "margin-left": "8px" } },
-                          [_vm._v("重置")]
+                          "a-select",
+                          {
+                            directives: [
+                              {
+                                name: "decorator",
+                                rawName: "v-decorator",
+                                value: ["status", { rules: [] }],
+                                expression: "[ 'status', {rules: []} ]"
+                              }
+                            ]
+                          },
+                          [
+                            _c("a-select-option", { attrs: { value: 1 } }, [
+                              _vm._v("正常")
+                            ]),
+                            _vm._v(" "),
+                            _c("a-select-option", { attrs: { value: 2 } }, [
+                              _vm._v("禁用")
+                            ])
+                          ],
+                          1
                         )
                       ],
                       1
-                    )
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("s-table", {
-        attrs: { size: "default", columns: _vm.columns, data: _vm.loadData },
-        scopedSlots: _vm._u([
-          {
-            key: "expandedRowRender",
-            fn: function(record) {
-              return _c(
-                "div",
-                { staticStyle: { margin: "0" } },
-                [
-                  _c(
-                    "a-row",
-                    { style: { marginBottom: "12px" }, attrs: { gutter: 24 } },
-                    _vm._l(record.permissions, function(role, index) {
-                      return _c(
-                        "a-col",
-                        {
-                          key: index,
-                          style: { marginBottom: "12px" },
-                          attrs: { span: 12 }
-                        },
-                        [
-                          _c("a-col", { attrs: { lg: 4, md: 24 } }, [
-                            _c("span", [
-                              _vm._v(_vm._s(role.permissionName) + "：")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          role.actionEntitySet.length > 0
-                            ? _c(
-                                "a-col",
-                                { attrs: { lg: 20, md: 24 } },
-                                _vm._l(role.actionEntitySet, function(
-                                  action,
-                                  k
-                                ) {
-                                  return _c(
-                                    "a-tag",
-                                    { key: k, attrs: { color: "cyan" } },
-                                    [_vm._v(_vm._s(action.describe))]
-                                  )
-                                }),
-                                1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a-form-item",
+                      { attrs: { label: "备注说明" } },
+                      [
+                        _c("a-textarea", {
+                          directives: [
+                            {
+                              name: "decorator",
+                              rawName: "v-decorator",
+                              value: [
+                                "describe",
+                                {
+                                  rules: [
+                                    {
+                                      required: true,
+                                      message: "Please input role name!"
+                                    }
+                                  ]
+                                }
+                              ],
+                              expression:
+                                "[ 'describe', {rules: [{ required: true, message: 'Please input role name!' }]} ]"
+                            }
+                          ],
+                          attrs: { row: 3, placeholder: "请填写角色名称" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a-form-item",
+                      { attrs: { label: "拥有权限" } },
+                      _vm._l(_vm.permissions, function(permission, index) {
+                        return _c(
+                          "a-row",
+                          { key: index, attrs: { gutter: 16 } },
+                          [
+                            _c("a-col", { attrs: { xl: 4, lg: 24 } }, [
+                              _vm._v(
+                                "\n                " +
+                                  _vm._s(permission.name) +
+                                  "：\n              "
                               )
-                            : _c("a-col", { attrs: { span: 20 } }, [
-                                _vm._v("-")
-                              ])
-                        ],
-                        1
-                      )
-                    }),
-                    1
-                  )
-                ],
-                1
-              )
-            }
-          },
-          {
-            key: "action",
-            fn: function(text, record) {
-              return _c(
-                "span",
-                {},
-                [
-                  _c(
-                    "a",
-                    {
-                      on: {
-                        click: function($event) {
-                          return _vm.handleEdit(record)
-                        }
-                      }
-                    },
-                    [_vm._v("编辑")]
-                  ),
-                  _vm._v(" "),
-                  _c("a-divider", { attrs: { type: "vertical" } }),
-                  _vm._v(" "),
-                  _c(
-                    "a-dropdown",
-                    [
-                      _c(
-                        "a",
-                        { staticClass: "ant-dropdown-link" },
-                        [
-                          _vm._v("\n          更多 "),
-                          _c("a-icon", { attrs: { type: "down" } })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a-menu",
-                        { attrs: { slot: "overlay" }, slot: "overlay" },
-                        [
-                          _c("a-menu-item", [
-                            _c("a", { attrs: { href: "javascript:;" } }, [
-                              _vm._v("详情")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("a-menu-item", [
-                            _c("a", { attrs: { href: "javascript:;" } }, [
-                              _vm._v("禁用")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("a-menu-item", [
-                            _c("a", { attrs: { href: "javascript:;" } }, [
-                              _vm._v("删除")
-                            ])
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            }
-          }
-        ])
-      }),
-      _vm._v(" "),
-      _c(
-        "a-modal",
-        {
-          staticStyle: { top: "20px" },
-          attrs: { title: "操作", width: 800 },
-          on: { ok: _vm.handleOk },
-          model: {
-            value: _vm.visible,
-            callback: function($$v) {
-              _vm.visible = $$v
-            },
-            expression: "visible"
-          }
-        },
-        [
-          _c(
-            "a-form",
-            {
-              attrs: {
-                autoFormCreate: function(form) {
-                  this$1.form = form
-                }
-              }
-            },
-            [
-              _c(
-                "a-form-item",
-                {
-                  attrs: {
-                    labelCol: _vm.labelCol,
-                    wrapperCol: _vm.wrapperCol,
-                    label: "唯一识别码",
-                    hasFeedback: "",
-                    validateStatus: "success"
-                  }
-                },
-                [
-                  _c("a-input", {
-                    attrs: {
-                      placeholder: "唯一识别码",
-                      id: "no",
-                      disabled: "disabled"
-                    },
-                    model: {
-                      value: _vm.mdl.id,
-                      callback: function($$v) {
-                        _vm.$set(_vm.mdl, "id", $$v)
-                      },
-                      expression: "mdl.id"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "a-form-item",
-                {
-                  attrs: {
-                    labelCol: _vm.labelCol,
-                    wrapperCol: _vm.wrapperCol,
-                    label: "角色名称",
-                    hasFeedback: "",
-                    validateStatus: "success"
-                  }
-                },
-                [
-                  _c("a-input", {
-                    attrs: { placeholder: "起一个名字", id: "role_name" },
-                    model: {
-                      value: _vm.mdl.name,
-                      callback: function($$v) {
-                        _vm.$set(_vm.mdl, "name", $$v)
-                      },
-                      expression: "mdl.name"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "a-form-item",
-                {
-                  attrs: {
-                    labelCol: _vm.labelCol,
-                    wrapperCol: _vm.wrapperCol,
-                    label: "状态",
-                    hasFeedback: "",
-                    validateStatus: "warning"
-                  }
-                },
-                [
-                  _c(
-                    "a-select",
-                    {
-                      model: {
-                        value: _vm.mdl.status,
-                        callback: function($$v) {
-                          _vm.$set(_vm.mdl, "status", $$v)
-                        },
-                        expression: "mdl.status"
-                      }
-                    },
-                    [
-                      _c("a-select-option", { attrs: { value: "1" } }, [
-                        _vm._v("正常")
-                      ]),
-                      _vm._v(" "),
-                      _c("a-select-option", { attrs: { value: "2" } }, [
-                        _vm._v("禁用")
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "a-form-item",
-                {
-                  attrs: {
-                    labelCol: _vm.labelCol,
-                    wrapperCol: _vm.wrapperCol,
-                    label: "描述",
-                    hasFeedback: ""
-                  }
-                },
-                [
-                  _c("a-textarea", {
-                    attrs: { rows: 5, placeholder: "...", id: "describe" },
-                    model: {
-                      value: _vm.mdl.describe,
-                      callback: function($$v) {
-                        _vm.$set(_vm.mdl, "describe", $$v)
-                      },
-                      expression: "mdl.describe"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("a-divider"),
-              _vm._v(" "),
-              _c(
-                "a-form-item",
-                {
-                  attrs: {
-                    labelCol: _vm.labelCol,
-                    wrapperCol: _vm.wrapperCol,
-                    label: "拥有权限",
-                    hasFeedback: ""
-                  }
-                },
-                _vm._l(_vm.mdl.permissions, function(permission, index) {
-                  return _c(
-                    "a-row",
-                    { key: index, attrs: { gutter: 16 } },
-                    [
-                      _c("a-col", { attrs: { span: 4 } }, [
-                        _vm._v(
-                          "\n            " +
-                            _vm._s(permission.permissionName) +
-                            "：\n          "
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "a-col",
+                              { attrs: { xl: 20, lg: 24 } },
+                              [
+                                permission.actionsOptions.length > 0
+                                  ? _c(
+                                      "a-checkbox",
+                                      {
+                                        attrs: {
+                                          indeterminate:
+                                            permission.indeterminate,
+                                          checked: permission.checkedAll
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            return _vm.onChangeCheckAll(
+                                              $event,
+                                              permission
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                  全选\n                "
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c("a-checkbox-group", {
+                                  attrs: { options: permission.actionsOptions },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.onChangeCheck(permission)
+                                    }
+                                  },
+                                  model: {
+                                    value: permission.selected,
+                                    callback: function($$v) {
+                                      _vm.$set(permission, "selected", $$v)
+                                    },
+                                    expression: "permission.selected"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "a-col",
-                        { attrs: { span: 20 } },
-                        [
-                          _c("a-checkbox-group", {
-                            attrs: { options: permission.actionsOptions }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                }),
-                1
-              )
-            ],
-            1
-          )
+                      }),
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ])
         ],
         1
       )
@@ -790,17 +578,39 @@ function saveService(parameter) {
 
 /***/ }),
 
-/***/ "./resources/js/views/other/UserList.vue":
-/*!***********************************************!*\
-  !*** ./resources/js/views/other/UserList.vue ***!
-  \***********************************************/
+/***/ "./resources/js/utils/permissions.js":
+/*!*******************************************!*\
+  !*** ./resources/js/utils/permissions.js ***!
+  \*******************************************/
+/*! exports provided: actionToObject */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actionToObject", function() { return actionToObject; });
+function actionToObject(json) {
+  try {
+    return JSON.parse(json);
+  } catch (e) {
+    console.log('err', e.message);
+  }
+
+  return [];
+}
+
+/***/ }),
+
+/***/ "./resources/js/views/role/RoleList.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/views/role/RoleList.vue ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _UserList_vue_vue_type_template_id_42d64e07___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserList.vue?vue&type=template&id=42d64e07& */ "./resources/js/views/other/UserList.vue?vue&type=template&id=42d64e07&");
-/* harmony import */ var _UserList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserList.vue?vue&type=script&lang=js& */ "./resources/js/views/other/UserList.vue?vue&type=script&lang=js&");
+/* harmony import */ var _RoleList_vue_vue_type_template_id_28ad9a44_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RoleList.vue?vue&type=template&id=28ad9a44&scoped=true& */ "./resources/js/views/role/RoleList.vue?vue&type=template&id=28ad9a44&scoped=true&");
+/* harmony import */ var _RoleList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RoleList.vue?vue&type=script&lang=js& */ "./resources/js/views/role/RoleList.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -810,50 +620,50 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _UserList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _UserList_vue_vue_type_template_id_42d64e07___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _UserList_vue_vue_type_template_id_42d64e07___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _RoleList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _RoleList_vue_vue_type_template_id_28ad9a44_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _RoleList_vue_vue_type_template_id_28ad9a44_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "28ad9a44",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/other/UserList.vue"
+component.options.__file = "resources/js/views/role/RoleList.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/other/UserList.vue?vue&type=script&lang=js&":
-/*!************************************************************************!*\
-  !*** ./resources/js/views/other/UserList.vue?vue&type=script&lang=js& ***!
-  \************************************************************************/
+/***/ "./resources/js/views/role/RoleList.vue?vue&type=script&lang=js&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/views/role/RoleList.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_babel_loader_lib_index_js_ref_12_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/babel-loader/lib??ref--12-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./UserList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/other/UserList.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_babel_loader_lib_index_js_ref_12_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_babel_loader_lib_index_js_ref_12_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RoleList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/babel-loader/lib??ref--12-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./RoleList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/role/RoleList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_babel_loader_lib_index_js_ref_12_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RoleList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/views/other/UserList.vue?vue&type=template&id=42d64e07&":
-/*!******************************************************************************!*\
-  !*** ./resources/js/views/other/UserList.vue?vue&type=template&id=42d64e07& ***!
-  \******************************************************************************/
+/***/ "./resources/js/views/role/RoleList.vue?vue&type=template&id=28ad9a44&scoped=true&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/views/role/RoleList.vue?vue&type=template&id=28ad9a44&scoped=true& ***!
+  \*****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserList_vue_vue_type_template_id_42d64e07___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./UserList.vue?vue&type=template&id=42d64e07& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/other/UserList.vue?vue&type=template&id=42d64e07&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserList_vue_vue_type_template_id_42d64e07___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RoleList_vue_vue_type_template_id_28ad9a44_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./RoleList.vue?vue&type=template&id=28ad9a44&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/role/RoleList.vue?vue&type=template&id=28ad9a44&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RoleList_vue_vue_type_template_id_28ad9a44_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserList_vue_vue_type_template_id_42d64e07___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RoleList_vue_vue_type_template_id_28ad9a44_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

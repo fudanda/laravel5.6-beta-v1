@@ -14,6 +14,10 @@ composer require rebing/graphql-laravel
 
 php artisan vendor:publish   --provider="Rebing\GraphQL\GraphQLServiceProvider"
 
+php artisan serve
+
+http://127.0.0.1:8000/graphql-ui
+
 **命令行**
 
 php artisan make:graphql:type UserType 

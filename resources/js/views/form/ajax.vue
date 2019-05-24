@@ -2,7 +2,7 @@
    <!-- <a-input  :value="value" placeholder="输入链接"/> -->
     <div>
     <a-button type="primary" @click="ajax1">签到</a-button>
-    <a-button type="primary" @click="ajax2">抽奖</a-button>
+    <a-button type="primary" >抽奖</a-button>
     </div>
 
 
@@ -10,6 +10,9 @@
 
 <script>
 import axios from 'axios'
+
+import {article} from '@/api/graphql';
+import gql from 'graphql-tag'
 export default {
   name: 'BaseForm',
   data () {
@@ -21,27 +24,25 @@ export default {
   methods: {
    
     ajax1 (e) {
-        var that=this;
-        console.log('签到：'+that.value1);
-      for (let index = 0; index < 10; index++) {
-             console.log(that.value1)
-          axios.get(that.value1).then(function(result) {
-            console.log(result.data.msg);
-        })
+      this.$apollo.mutate({
+      // Query
+      mutation: gql`mutation{
+        article{
+         article_id
+        }
+      }`,
+      // Parameters
+      variables: {
+        label: this.newTag,
       }
-
+}).then(data=>{
+    console.log(data)
+}).catch(error=>{
+    console.log(error)
+})
       
     },
-    ajax2 (e) {
-        var that=this;
-        console.log('抽奖：'+that.value2);
-      for (let index = 0; index < 10; index++) {
-             console.log(that.value2)
-          axios.get(that.value2).then(function(result) {
-            console.log(result.data.msg);
-        })
-      }
-  }
+   
   }
 }
 </script>
